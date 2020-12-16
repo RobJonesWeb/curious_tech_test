@@ -1,0 +1,3 @@
+<?php
+
+//delete.blade.php

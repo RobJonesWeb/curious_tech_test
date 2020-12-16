@@ -1,0 +1,3 @@
+<?php
+
+//read.blade.php
