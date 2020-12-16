@@ -1,3 +1,3 @@
-<?php
+@extends('layouts.header')
 
-//index.blade.php
+@extends('layouts.footer')
