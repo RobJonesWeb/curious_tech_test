@@ -1,3 +1,1 @@
-<?php
-
-//read.blade.php
+<h1>admin.read</h1>

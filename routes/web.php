@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::resource('/', 'IndexController');
 
 Auth::routes();
 
 Route::resource('/admin', 'AdminController');
+Route::resource('/home', 'HomeController');
