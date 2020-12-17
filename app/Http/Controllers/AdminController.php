@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,10 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
+
         if (Auth::user()->administrator) {
-            return view('admin.read');
+            return view('admin.read')->with('products', $products);
         }
         return view('noaccess');
     }

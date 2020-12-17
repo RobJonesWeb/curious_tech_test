@@ -59,3 +59,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Installation Instructions
+
+* Clone repo
+* Run `composer install`
+* Run `npm install`
+* Run `npm run dev`
+* Copy `.env.example` to `.env`
+* Setup .env with database credentials
+* Run `php artisan key:generate`
+* Run `php artisan migrate`
+* Run `php Artisan db:seed`
+
+This will give you some dummy data in products and two user accounts:
+
+`Username: Rob`
+`Password: P455w0rd`
+`Access: User`
+
+`username: admin`
+`Password: P4ssw0rd`
+`Access: Admin`
+
+While you are logged in to the admin account, you will see an \`Add a Product\` option, this does not show for the user account.
+
+If you attempt to navigate to the admin directory on a user account, you will get redirected to a no access view.
+
+Adding a product requires: name, stock and price, on the listing page it does show a placeholder image but I left it out of the form as it wasn't in the original scope.
