@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
     <!-- Favicon -->
     <link rel="icon" href="https://thecurious.agency/wp-content/uploads/2019/05/2019-05-14-1.png" sizes="32x32">
 </head>

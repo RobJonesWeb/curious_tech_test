@@ -37282,10 +37282,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 function purchaseFruit(fruit, stock) {
   var msg = '';
 
-  if (stock > 0) {
-    msg = 'You have just bought a curious ' + fruit;
+  if ($product["stock"] > 0) {
+    msg = 'You have just bought a curious ' + $product["name"];
   } else {
-    msg = 'Sorry, we have sold out of curious ' + fruit + '\'s';
+    msg = 'Sorry, we have sold out of curious ' + $product["name"] + '\'s';
   }
 
   alert(msg);
@@ -37356,8 +37356,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\curious_tech_test\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\curious_tech_test\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\ca\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ca\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
