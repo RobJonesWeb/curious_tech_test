@@ -1,3 +1,1 @@
-<?php
-
-//delete.blade.php
+<h1>Success</h1>

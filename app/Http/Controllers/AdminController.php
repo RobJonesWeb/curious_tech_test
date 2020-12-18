@@ -6,6 +6,8 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 /**
  * Class AdminController
@@ -44,7 +46,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -55,7 +57,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**
@@ -66,7 +68,11 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = DB::select('select * from products where id = :id', array('id' => $id));
+
+        return view('something')->with('product', $product);
+
+
     }
 
     /**

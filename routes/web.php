@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::resource('/', 'IndexController');
+Route::get('/', function() {
+    $products = Product::all();
+    return view('index')->with('products', $products);
+});
 
 Auth::routes();
 
