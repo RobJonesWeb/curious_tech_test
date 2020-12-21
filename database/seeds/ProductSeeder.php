@@ -17,6 +17,8 @@ class ProductSeeder extends Seeder
             'name' => "Apple",
             'price' => 0.25,
             'stock' => 49,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('products')->insert([
