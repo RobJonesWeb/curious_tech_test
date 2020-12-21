@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\View\View;
 
 /**
  * Class AdminController
@@ -23,6 +25,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
+        // Require Authentication
         $this->middleware('auth');
     }
 
@@ -31,11 +34,15 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // Retrieve all products
         $products = Product::all();
 
+        // Check to see if the value of administrator for the user is true
         if (Auth::user()->administrator) {
+            // Return the view with the product data
             return view('admin.read')->with('products', $products);
         }
+        // Return a no access page
         return view('noaccess');
     }
 
@@ -45,55 +52,52 @@ class ProductController extends Controller
      */
     public function create()
     {
+        // return the view for creating a product
         return view('admin.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(Request $request)
     {
-        $products = Product::all();
+        // Create a new product
         $product = new Product;
+
+        // Alter the products columns
         $product->name = $request['name'];
         $product->stock = $request['stock'];
         $product->price = $request['price'];
+
+        // Save the product
         $product->save();
-        return redirect('/admin/products')
-            ->with('products', $products);
+
+        // Redirect the user back to the admin product list page upon completion
+        return redirect('/admin/products');
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param int $id
-     */
-    public function show($id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
+     * @return Application|Factory|View
      */
     public function edit(int $id)
     {
-        $product = Product::find($id);
+        // Find the product from the id
+        $product = Product::findOrFail($id);
+
+        // Return the update view passing along the product information so the fields can be pre-populated
         return view('admin.update')->with('product', $product);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(Request $request, int $id)
     {
-        $products = Product::all();
+        // Find the product where id equals the passed in $id and update all the columns with the new values
         Product::where('id', $id)
             ->update(
                 [
@@ -103,22 +107,23 @@ class ProductController extends Controller
                 ]
             );
 
-        return redirect('/admin/products')
-            ->with('products', $products);
+        // Redirect the user back to the admin product list page upon completion
+        return redirect('/admin/products');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param int $id
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(int $id)
     {
-        $products = Product::all();
-
+        //Find the first instance of a product from the id value passed in
         $product = Product::findOrFail($id);
+
+        // Delete the product
         $product->delete();
 
-        return redirect('/admin/products')->with('products', $products);
+        // Redirect the user back to the admin product list page upon completion
+        return redirect('/admin/products');
     }
 }

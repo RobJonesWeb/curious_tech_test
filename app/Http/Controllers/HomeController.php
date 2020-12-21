@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
@@ -13,16 +15,16 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // Check if the user is logged in if not redirect them to the login
         $this->middleware('auth');
     }
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
+        // Return the home view
         return view('home');
     }
 }
