@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
     <main id="container">
-        <h2 class="p-3">Welcome to Curious fruit where we go coconuts over selling</h2>
+        <h2 class="p-3">Welcome to Curious fruit where we go bananas over selling</h2>
         <div class="d-flex flex-wrap justify-content-around">
             @foreach($products as $product)
                 <div class="col-sm-3">

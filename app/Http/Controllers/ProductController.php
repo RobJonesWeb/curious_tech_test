@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\Input;
  * Class AdminController
  * @package App\Http\Controllers
  */
-class AdminController extends Controller
+class ProductController extends Controller
 {
 
     /**
@@ -42,7 +42,6 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -52,60 +51,74 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        $products = Product::all();
+        $product = new Product;
+        $product->name = $request['name'];
+        $product->stock = $request['stock'];
+        $product->price = $request['price'];
+        $product->save();
+        return redirect('/admin/products')
+            ->with('products', $products);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
     public function show($id)
     {
-        $product = DB::select('select * from products where id = :id', array('id' => $id));
-
-        return view('something')->with('product', $product);
-
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.update')->with('product', $product);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $products = Product::all();
+        Product::where('id', $id)
+            ->update(
+                [
+                    'name' => $request["name"],
+                    'stock' => $request["stock"],
+                    'price' => $request["price"]
+                ]
+            );
+
+        return redirect('/admin/products')
+            ->with('products', $products);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $products = Product::all();
+
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect('/admin/products')->with('products', $products);
     }
 }

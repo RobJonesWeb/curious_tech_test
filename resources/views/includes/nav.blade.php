@@ -31,10 +31,10 @@
                 @else
                     @if(Auth::user()->administrator)
                         <li class="nav-item px-1">
-                            <a class="nav-link btn btn-primary text-light" href="/admin/create" role="button">Add a Product</a>
+                            <a class="nav-link btn btn-primary text-light" href="/admin/products/create" role="button">Add a Product</a>
                         </li>
                         <li class="nav-item px-1">
-                            <a class="nav-link btn btn-success text-light" href="/admin" role="button">Product Admin</a>
+                            <a class="nav-link btn btn-success text-light" href="/admin/products" role="button">Product Admin</a>
                         </li>
                     @endif
                     <li class="nav-item dropdown">

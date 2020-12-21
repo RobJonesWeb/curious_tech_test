@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'name' => "Coconut",
+            'name' => "Bananas",
             'price' => 1.20,
             'stock' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

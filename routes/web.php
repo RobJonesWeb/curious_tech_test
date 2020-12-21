@@ -22,5 +22,5 @@ Route::get('/', function() {
 
 Auth::routes();
 
-Route::resource('/admin', 'AdminController');
+Route::resource('/admin/products', 'ProductController');
 Route::resource('/home', 'HomeController');

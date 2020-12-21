@@ -13,4 +13,16 @@ class Product extends Model {
     protected $fillable = [
         'name', 'price', 'stock',
     ];
+    /**
+     * @var mixed
+     */
+    private $name;
+    /**
+     * @var mixed
+     */
+    private $stock;
+    /**
+     * @var mixed
+     */
+    private $price;
 }

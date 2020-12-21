@@ -12,6 +12,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/brands.js') }}" defer></script>
+    <script src="{{ asset('js/solid.js') }}" defer></script>
+    <script src="{{ asset('js/fontawesome.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
